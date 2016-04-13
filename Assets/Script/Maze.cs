@@ -87,6 +87,6 @@ public class Maze : MonoBehaviour {
         MazeGr newCell = Instantiate(cellPrefab1);
         newCell.name = "Maze Cell " + x + ", " + y;
 
-        newCell.transform.localPosition = new Vector3(x, y, -1);
+        newCell.transform.localPosition = new Vector3(x, y, 1);
     }
 }
