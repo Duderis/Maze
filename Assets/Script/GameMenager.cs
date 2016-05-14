@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System;
 
-public class GameMenager : MonoBehaviour {
+public class GameMenager : NetworkBehaviour {
     public Maze mazePref;
     private Maze mazeint;
 	// Use this for initialization
@@ -24,7 +25,9 @@ public class GameMenager : MonoBehaviour {
 
     private void BeginGame()
     {
-        mazeint = Instantiate(mazePref) as Maze;
-        mazeint.Generate();
+		
+			mazeint = Instantiate (mazePref) as Maze;
+			mazeint.Generate ();
+
     }
 }
