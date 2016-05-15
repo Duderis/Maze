@@ -11,7 +11,7 @@ public class stuff : NetworkBehaviour {
 	}
 	public void networkJoin () {
 		InputField input = GameObject.Find ("InputField").GetComponent<InputField> ();
-		nm.networkAddress = input.text;
+		nm.networkAddress = "88.222.117.174";//input.text;
 		nm.networkPort = 7777;
 		nm.StartClient ();
 	}

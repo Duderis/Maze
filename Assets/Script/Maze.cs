@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System;
 
 public class Maze : MonoBehaviour {
+	private GameObject MazeObject;
     public int sizeX, sizeY;
-    private System.Random rnd = new System.Random();
+    //private System.Random rnd = new System.Random();
+	public int seed;
     private int[,] maze;
     public MazeGr cellPrefab1;
     //private MazeGr[,] cells1;
@@ -13,7 +16,8 @@ public class Maze : MonoBehaviour {
     private void generav(int r, int c)
     {
         int k = 0;
-        int sk = rnd.Next(1, 4);
+        //int sk = rnd.Next(1, 4);
+		int sk = UnityEngine.Random.Range(1,5);
         switch (sk)
         {
             case 1:
@@ -60,6 +64,9 @@ public class Maze : MonoBehaviour {
     }
     public void Generate()
     {
+		UnityEngine.Random.seed = seed;
+		MazeObject = new GameObject ();
+		MazeObject.name = "MazeContainer";
         //cells = new MazeCell[sizeX+50, sizeY+50];
         maze = new int[sizeX+50, sizeY+50];
         Array.Clear(maze, 0, 125);
@@ -81,6 +88,7 @@ public class Maze : MonoBehaviour {
         newCell.name = "Maze Cell " + x + ", " + y;
 
         newCell.transform.localPosition = new Vector3(x, y, 0);
+		newCell.transform.parent = MazeObject.transform;
     }
     private void CreateCell1(int x, int y)
     {
@@ -88,5 +96,6 @@ public class Maze : MonoBehaviour {
         newCell.name = "Maze Cell " + x + ", " + y;
 
         newCell.transform.localPosition = new Vector3(x, y, 1);
+		newCell.transform.parent = MazeObject.transform;
     }
 }

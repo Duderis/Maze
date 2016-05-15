@@ -6,10 +6,17 @@ using System;
 public class GameMenager : NetworkBehaviour {
     public Maze mazePref;
     private Maze mazeint;
+
+	[SyncVar]
+	int sed;
+
 	// Use this for initialization
-	void Start () {
-        BeginGame();
-    }
+	void Start(){
+		if (isServer) {
+			sed = UnityEngine.Random.Range (1, 50000);
+		}
+		BeginGame ();
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,9 +32,8 @@ public class GameMenager : NetworkBehaviour {
 
     private void BeginGame()
     {
-		
-			mazeint = Instantiate (mazePref) as Maze;
-			mazeint.Generate ();
-
+		mazeint = Instantiate (mazePref) as Maze;
+		mazeint.seed = sed;
+		mazeint.Generate ();
     }
 }
