@@ -9,6 +9,8 @@ public class PlayerInitialize : NetworkBehaviour {
 		if (isLocalPlayer){
 			GameObject maincamera = Instantiate (cam);
 			maincamera.transform.parent = this.gameObject.transform;
+			maincamera.transform.position = this.gameObject.transform.localPosition;
+			maincamera.transform.Translate (0,(float)-2.61,-15,Space.World);
 		}
 	}
 }

@@ -3,7 +3,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using System;
 
-public class Maze : MonoBehaviour {
+public class Maze : NetworkBehaviour {
 	private GameObject MazeObject;
     public int sizeX, sizeY;
     //private System.Random rnd = new System.Random();
@@ -81,21 +81,27 @@ public class Maze : MonoBehaviour {
                 else CreateCell(x, y);
             }
     }
-    private void CreateCell(int x, int y)
+    private void CreateCell(int x, int y)//sienos blokas
     {
         print(x + y);
         MazeCell newCell = Instantiate(cellPrefab);
         newCell.name = "Maze Cell " + x + ", " + y;
 
-        newCell.transform.localPosition = new Vector3(x, y, 0);
+        newCell.transform.position = new Vector3(x, y, 0);
 		newCell.transform.parent = MazeObject.transform;
     }
-    private void CreateCell1(int x, int y)
+    private void CreateCell1(int x, int y)//grindys
     {
         MazeGr newCell = Instantiate(cellPrefab1);
         newCell.name = "Maze Cell " + x + ", " + y;
+		newCell.transform.position = new Vector3(x, y, 1);
 
-        newCell.transform.localPosition = new Vector3(x, y, 1);
+		GameObject spawnObject = new GameObject ();
+		spawnObject.name = "Spawn " + x + ", " + y;
+		spawnObject.transform.position = new Vector3(x, y, 0);
+		spawnObject.AddComponent<NetworkStartPosition>();
+
 		newCell.transform.parent = MazeObject.transform;
+		spawnObject.transform.parent = MazeObject.transform;
     }
 }

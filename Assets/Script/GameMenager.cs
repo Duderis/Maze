@@ -11,7 +11,7 @@ public class GameMenager : NetworkBehaviour {
 	int sed;
 
 	// Use this for initialization
-	void Start(){
+	void Awake(){
 		if (isServer) {
 			sed = UnityEngine.Random.Range (1, 50000);
 		}
