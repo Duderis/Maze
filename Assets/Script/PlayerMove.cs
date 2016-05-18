@@ -13,9 +13,27 @@ public class PlayerMove : NetworkBehaviour {
 	void Update () {
 		if (!isLocalPlayer)
 			return;
-		var x = Input.GetAxis("Horizontal")*0.05f;
-		var y = Input.GetAxis("Vertical")*0.05f;
-		
-		transform.Translate(x, y, 0);
-	}
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+        Vector3 move = new Vector3(x, y, 0.0f);
+        this.gameObject.GetComponent<Rigidbody>().velocity = move * 3;
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("asdasdasdasd");
+        Vector3 move;
+        if (collision.gameObject.tag=="Wall")
+        {
+            if (Input.GetAxis("Vertical") != 0)
+            {
+                move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+                this.gameObject.GetComponent<Rigidbody>().velocity = move * 3;
+            }
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                move = new Vector3(0, Input.GetAxis("Vertical"), 0);
+                this.gameObject.GetComponent<Rigidbody>().velocity = move * 3;
+            }
+        }
+    }
 }

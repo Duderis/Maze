@@ -83,7 +83,6 @@ public class Maze : NetworkBehaviour {
     }
     private void CreateCell(int x, int y)//sienos blokas
     {
-        print(x + y);
         MazeCell newCell = Instantiate(cellPrefab);
         newCell.name = "Maze Cell " + x + ", " + y;
 
