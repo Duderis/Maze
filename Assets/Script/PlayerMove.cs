@@ -18,7 +18,7 @@ public class PlayerMove : NetworkBehaviour {
         Vector3 move = new Vector3(x, y, 0.0f);
         this.gameObject.GetComponent<Rigidbody>().velocity = move * 3;
     }
-    void OnCollisionEnter(Collision collision)
+    /*void OnCollisionEnter(Collision collision)
     {
         Debug.Log("asdasdasdasd");
         Vector3 move;
@@ -35,5 +35,5 @@ public class PlayerMove : NetworkBehaviour {
                 this.gameObject.GetComponent<Rigidbody>().velocity = move * 3;
             }
         }
-    }
+    }*/
 }
