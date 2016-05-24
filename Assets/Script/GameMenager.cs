@@ -3,26 +3,31 @@ using UnityEngine.Networking;
 using System.Collections;
 using System;
 
-public class GameMenager : NetworkBehaviour {
+public class GameMenager : NetworkBehaviour
+{
     public Maze mazePref;
     private Maze mazeint;
+    //public int[,] maze;
 
-	[SyncVar]
-	int sed;
+    [SyncVar]
+    int sed;
 
-	// Use this for initialization
-	void Awake(){
-		if (isServer) {
-			sed = UnityEngine.Random.Range (1, 50000);
-		}
-		BeginGame ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Awake()
+    {
+        if (isServer)
+        {
+            sed = UnityEngine.Random.Range(1, 50000);
+        }
+        BeginGame();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
             RestartGame();
-	}
+    }
 
     private void RestartGame()
     {
@@ -32,8 +37,14 @@ public class GameMenager : NetworkBehaviour {
 
     private void BeginGame()
     {
-		mazeint = Instantiate (mazePref) as Maze;
-		mazeint.seed = sed;
-		mazeint.Generate ();
+        mazeint = Instantiate(mazePref) as Maze;
+        mazeint.seed = sed;
+        mazeint.Generate();
+        //maze = mazeint.getMaze();
+    }
+    //?
+    public int[,] getMaze()
+    {
+        return mazeint.getMaze();
     }
 }

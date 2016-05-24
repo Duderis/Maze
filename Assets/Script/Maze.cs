@@ -103,4 +103,9 @@ public class Maze : NetworkBehaviour {
 		newCell.transform.parent = MazeObject.transform;
 		spawnObject.transform.parent = MazeObject.transform;
     }
+    //?
+    public int[,] getMaze()
+    {
+        return maze;
+    }
 }
